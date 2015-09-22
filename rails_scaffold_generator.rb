@@ -24,7 +24,9 @@ model.entities.each do |entity|
   end
 
   entity.relationships.each do |relation|
-    string += "#{relation.destination.downcase}:references "
+    if !relation.to_many?
+      string += "#{relation.destination.downcase}:references "
+    end
   end
 
   string += "-f -q"
